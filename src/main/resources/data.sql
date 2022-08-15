@@ -28,19 +28,20 @@ insert into dosage_form(form) values ('Растворы');
 insert into dosage_form(form) values ('Аэрозоли');
 
 
-insert into medicine_chest(name) values ('Моя аптечка');
+insert into medicine_chest(name) values ('Домашняя аптечка');
+insert into medicine_chest(name) values ('Автомобильная аптечка');
 
-insert into medicine(name,manufacturer,dosage,expiration_date,count,description,category_id) values
-    ('Кларитромицин','ВЕРТЕКС',500,'12.03.2023',1,'Пример описания',1);
-insert into medicine(name,manufacturer,dosage,expiration_date,count,description,category_id) values
-    ('Арпетол','Фармлэнд',100,'12.03.2022',1,'Пример описания',13);
-insert into medicine(name,manufacturer,dosage,expiration_date,count,description,category_id) values
-    ('Дифлофенак','Фармлэнд',50,'12.11.2022',1,'Пример описания',14);
-insert into medicine(name,manufacturer,dosage,expiration_date,count,description,category_id) values
-    ('Бинт марлевый стерильный 10х500 см','Чефи',null,'12.03.2023',1,'Пример описания',18);
+insert into medicine(name,manufacturer,dosage,description,category_id) values
+    ('Кларитромицин','ВЕРТЕКС',500,'Пример описания',1);
+insert into medicine(name,manufacturer,dosage,description,category_id) values
+    ('Арпетол','Фармлэнд',100,'Пример описания',13);
+insert into medicine(name,manufacturer,dosage,description,category_id) values
+    ('Дифлофенак','Фармлэнд',50,'Пример описания',14);
+insert into medicine(name,manufacturer,dosage,description,category_id) values
+    ('Бинт марлевый стерильный 10х500 см','Чефи',null,'Пример описания',18);
 
-insert into medicine_chest_medicine(medicine_chest_id,medicine_id) values(1,1);
-insert into medicine_chest_medicine(medicine_chest_id,medicine_id) values(1,4);
+insert into medicine_chest_medicine(count,expiration_date,medicine_chest_id,medicine_id) values(1,'2022-03-03',1,1);
+insert into medicine_chest_medicine(count,expiration_date,medicine_chest_id,medicine_id) values(1,'2022-11-03',1,4);
 
 insert into medicine_dosage_form(dosage_form_id,medicine_id) values(2,1);
 insert into medicine_dosage_form(dosage_form_id,medicine_id) values(1,2);

@@ -16,16 +16,19 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name="medicine")
+@Table(name = "medicine")
 public class Medicine {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private String manufacturer;
+
     private Integer dosage;
-    private String expiration_date;
-    private Integer count;
+
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
