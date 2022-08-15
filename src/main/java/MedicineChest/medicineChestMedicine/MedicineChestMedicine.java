@@ -28,11 +28,17 @@ public class MedicineChestMedicine {
     @Column(name = "expiration_date")
     private LocalDate expirationDate;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    private MedicineChest medicineChest;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Medicine medicine;
+
+   /* @OneToOne
     private Medicine medicine;
 
     @OneToOne
-    private MedicineChest medicineChest;
+    private MedicineChest medicineChest;*/
 
 }
 

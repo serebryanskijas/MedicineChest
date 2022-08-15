@@ -26,9 +26,16 @@
 
 <div class="col py-3 container mt-5">
     <h3>Список аптечек</h3>
+
+
+
     <table class="table table-striped w-auto">
         <tr>
-            <th>№</th><th>Название</th><th></th>
+            <th>№</th><th>Название</th>
+            <th>
+                <button th:class="accordion-item "> <a th:href="@{/add_medicineChest(id=${medicineChests})}"><i class="fa fa-plus" style="color: black" aria-hidden="true" title="Добавить аптечку"></i></a>
+                </button>
+            </th>
         </tr>
         <tbody>
 
@@ -38,7 +45,9 @@
 
             </td>
             <td id="button">
-                <a th:href="@{/edit_medicineChest(id=${medicineChest.id})}"><i class="fa fa-pencil" aria-hidden="true" title="Редактировать"></i></a>
+                <a th:href="@{/update_medicineChest(id=${medicineChest.id})}"><i class="fa fa-pencil" aria-hidden="true" title="Редактировать название"></i></a>
+                &nbsp
+                <a th:href="@{/edit_medicineChest(id=${medicineChest.id})}"><i class="fa fa-sign-in" aria-hidden="true" title="Открыть"></i></a>
                 &nbsp
                 <a th:href="@{/delete_medicineChest(id=${medicineChest.id})}"><i class="fa fa-trash-o" aria-hidden="true" title="Удалить"></i></a>
             </td>

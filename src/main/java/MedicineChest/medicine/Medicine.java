@@ -2,6 +2,7 @@ package MedicineChest.medicine;
 
 import MedicineChest.category.Category;
 import MedicineChest.dosageForm.DosageForm;
+import MedicineChest.medicineChestMedicine.MedicineChestMedicine;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,8 @@ public class Medicine {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
+
+
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(name = "medicine_dosage_form",

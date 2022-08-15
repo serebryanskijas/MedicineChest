@@ -15,7 +15,7 @@ public class MedicineChestController {
 
     @GetMapping(value ="/add_medicineChest")
     public String index(Model model) {
-        model.addAttribute("medicineChests",new MedicineChest()); //Если не добавить, то не будет выполняться парсинг шаблона исходной страницы
+        model.addAttribute("medicineChest",new MedicineChest()); //Если не добавить, то не будет выполняться парсинг шаблона исходной страницы
         return "add_medicineChest";
     }
 
