@@ -3,13 +3,14 @@ package MedicineChest.medicine;
 import MedicineChest.category.CategoryService;
 import MedicineChest.dosageForm.DosageFormService;
 import MedicineChest.medicineChest.MedicineChest;
-import MedicineChest.medicineChest.MedicineChestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.StringUtils;
 
-import java.util.Objects;
+import javax.servlet.http.HttpServletResponse;
+
 
 @Controller
 public class MedicineController {
@@ -18,15 +19,12 @@ public class MedicineController {
     private MedicineService medicineService;
 
     @Autowired
-    private MedicineChestService medicineChestService;
-
-    @Autowired
     private CategoryService categoryService;
 
     @Autowired
     private DosageFormService dosageFormService;
 
-    @GetMapping(value = { "/index", "/" })
+    @GetMapping(value = {"/index", "/"})
     public String index() {
         return "index";
     }
@@ -34,8 +32,28 @@ public class MedicineController {
     @GetMapping(value = "/medicines")
     public String listMedicines(Model model) {
         model.addAttribute("medicines", medicineService.findAll());
-        //TODO
         return "medicines";
+    }
+
+    @GetMapping(value = "/add_medicine")
+    public String addMedicine(Model model) {
+        model.addAttribute("medicine", new Medicine());
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("dosageForms", dosageFormService.findAll());
+        return "add_medicine";
+    }
+
+    @PostMapping(value = "/add_medicine")
+    public String saveMedicine(Medicine medicine, Model model, HttpServletResponse response) {
+        System.out.println(medicine);
+        //Передать id в заголовке ответа
+        if (!StringUtils.isEmpty(medicine.getName())) {
+            Medicine newMedicine = medicineService.save(medicine);
+            long id = newMedicine.getId();
+            response.addHeader("id", String.valueOf(id));
+        }
+        model.addAttribute("medicine", medicineService.findAll());
+        return "redirect:/medicines";
     }
 
     @GetMapping(value = "/edit_medicine")
@@ -61,8 +79,5 @@ public class MedicineController {
         medicineService.deleteById(id);
         return "redirect:/medicines";
     }
-
-
-
 }
 

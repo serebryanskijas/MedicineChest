@@ -36,7 +36,6 @@ public class Medicine {
     private Category category;
 
 
-
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(name = "medicine_dosage_form",
             joinColumns = @JoinColumn(name = "medicine_id"),

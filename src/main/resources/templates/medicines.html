@@ -28,7 +28,10 @@
 			<th>Дозировка, мг</th>
 			<th>Категория</th>
 			<th>Форма</th>
-			<th></th>
+			<th>
+				<a th:href="@{/add_medicine(id=${medicine})}">
+					<i class="fa fa-plus" style="color: black" aria-hidden="true" title="Добавить препарат"></i></a>
+			</th>
 		</tr>
 		<tbody>
 		<tr th:each="medicine: ${medicines}">
