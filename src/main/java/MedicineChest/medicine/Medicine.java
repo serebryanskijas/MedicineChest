@@ -2,15 +2,12 @@ package MedicineChest.medicine;
 
 import MedicineChest.category.Category;
 import MedicineChest.dosageForm.DosageForm;
-import MedicineChest.medicineChestMedicine.MedicineChestMedicine;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Entity
@@ -35,11 +32,7 @@ public class Medicine {
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
-
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinTable(name = "medicine_dosage_form",
-            joinColumns = @JoinColumn(name = "medicine_id"),
-            inverseJoinColumns = @JoinColumn(name = "dosage_form_id"))
-    private Set<DosageForm> dosageForms = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    private DosageForm dosageForm;
 
 }

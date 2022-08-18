@@ -21,7 +21,7 @@
 
 <div class="col py-3 container mt-5">
 	<h3>Справочник препаратов</h3>
-	<table class="table table-striped w-auto">
+	<table class="table table-striped w-auto border-dark">
 		<tr>
 			<th>Наименование</th>
 			<th>Производитель</th>
@@ -39,9 +39,8 @@
 			<td th:utext="${medicine.manufacturer}"></td>
 			<td th:utext="${medicine.dosage}"></td>
 			<td th:utext="${medicine.category.name}"></td>
-			<td><label th:each="dosageForm:${medicine.dosageForms}"
-					   th:if="${dosageForm.form!=null}" th:utext="${dosageForm.form}"></label>
-
+			<td>
+				<label th:if="${medicine.dosageForm!=null}" th:utext="${medicine.dosageForm.form}"></label>
 			</td>
 			<td id="button">
 				<div class="row">

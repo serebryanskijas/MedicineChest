@@ -13,8 +13,7 @@ public class MedicineChestRestController {
 
     @GetMapping(value="/medicineChest", params={})
     public List<MedicineChest> getMedicineChest(){
-        var medicineChests = (List<MedicineChest>) medicineChestService.findAll();
-        return medicineChests;
+        return medicineChestService.findAll();
     }
 
 

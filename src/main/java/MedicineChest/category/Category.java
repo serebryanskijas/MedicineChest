@@ -1,9 +1,11 @@
 package MedicineChest.category;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+
 
 @Data
 @Entity
@@ -15,6 +17,9 @@ public class Category {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name", nullable = false)
     private String name;
+
+
 }
 

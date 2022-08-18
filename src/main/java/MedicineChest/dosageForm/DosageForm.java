@@ -1,10 +1,11 @@
 package MedicineChest.dosageForm;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
+
 
 @Data
 @Entity
@@ -14,11 +15,14 @@ import javax.persistence.*;
 public class DosageForm {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column (name = "form", nullable = false)
     private String form;
+
+
 
 }
 

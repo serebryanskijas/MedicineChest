@@ -24,12 +24,13 @@ CREATE TABLE medicine_chest
 
 CREATE TABLE medicine
 (
-    id           INTEGER NOT NULL AUTO_INCREMENT,
-    name         TEXT    NOT NULL,
-    manufacturer TEXT    NULL,
-    dosage       INTEGER NULL,
-    description  TEXT    NULL,
-    category_id  INTEGER NOT NULL
+    id             INTEGER NOT NULL AUTO_INCREMENT,
+    name           TEXT    NOT NULL,
+    manufacturer   TEXT    NULL,
+    dosage         INTEGER NULL,
+    description    TEXT    NULL,
+    category_id    INTEGER NOT NULL,
+    dosage_form_id INTEGER NULL
 );
 
 CREATE TABLE medicine_chest_medicine
@@ -39,10 +40,4 @@ CREATE TABLE medicine_chest_medicine
     expiration_date   DATE    NOT NULL,
     medicine_chest_id INTEGER NOT NULL,
     medicine_id       INTEGER NOT NULL
-);
-
-CREATE TABLE medicine_dosage_form
-(
-    medicine_id    INTEGER NOT NULL,
-    dosage_form_id INTEGER null
 );
