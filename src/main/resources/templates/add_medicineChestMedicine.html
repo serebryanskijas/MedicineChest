@@ -17,50 +17,35 @@
 <body>
 <div class="container mt-5">
 	<form method="post" th:action="@{/add_medicineChestMedicine}" th:object="${medicineChestMedicine}">
-		<p>sdf</p>
 		<div class="mb-3">
 			<label for="category" class="form-label">Категория</label>
 			<select class="form-select" aria-label="Category" id="category" name="category" required>
 				<option></option>
-				<th:block th:each="medicineChestMedicine:${medicineChestMedicines}">
-					<option th:utext="${medicineChestMedicine.medicine.category.name}"
-							th:value="${medicineChestMedicine.medicine.category.id}"></option>
+				<th:block th:each="category:${categories}">
+					<option th:utext="${category.name}"
+							th:value="${category.id}"></option>
 				</th:block>
 			</select>
 		</div>
 		<div class="mb-3">
-			<label for="name" class="form-label">Наименование</label>
-			<input type="text" class="form-control" id="name" th:field="*{medicine.name}" required>
-		</div>
-		<div class="mb-3">
-			<label for="manufacturer" class="form-label">Производитель</label>
-			<input type="text" class="form-control" id="manufacturer" th:field="*{medicine.manufacturer}">
-		</div>
-		<div class="mb-3">
-			<label for="dosage" class="form-label">Дозировка, мг</label>
-			<input type="number" class="form-control" id="dosage" th:field="*{medicine.dosage}">
-		</div>
-		<div class="mb-3">
-			<label for="dosageForm" class="form-label">Форма выпуска</label>
-			<select class="form-select" aria-label="DosageForm" id="dosageForm" name="dosageForm">
+			<label for="name" class="form-label">Наименоввание</label>
+			<select class="form-select" aria-label="DosageForm" id="name" name="name" required>
 				<option></option>
-				<th:block th:each="medicineChestMedicine:${medicineChestMedicines}">
-					<option th:utext="${medicineChestMedicine.medicine.dosageForm.form}"
-							th:value="${medicineChestMedicine.medicine.dosageForm.id}"></option>
+				<th:block th:each="medicine:${medicines}">
+					<option th:utext="${medicine.name+' &#171'+medicine.manufacturer+'&#187 '+medicine.dosage+' мг, '+medicine.dosageForm.form}"
+							th:value="${medicine.id}"></option>
 				</th:block>
 			</select>
 		</div>
+
+
 		<div class="mb-3">
 			<label for="expirationDate" class="form-label">Срок годности</label>
-			<input type="datetime-local" class="form-control" id="expirationDate" th:field="*{expirationDate}">
+			<input type="date" class="form-control" id="expirationDate" th:field="*{expirationDate}" REQUIRED>
 		</div>
 		<div class="mb-3">
-			<label for="count" class="form-label">Количество, шт</label>
-			<input type="number" class="form-control" id="count" th:field="*{count}">
-		</div>
-		<div class="mb-3">
-			<label for="description" class="form-label">Описание</label>
-			<input type="text" class="form-control" id="description" th:field="*{medicine.description}">
+			<label for="count" class="form-label">Количество</label>
+			<input type="number" class="form-control" id="count" th:field="*{count}" required>
 		</div>
 
 		<button type="submit" class="btn btn-primary">Сохранить</button>

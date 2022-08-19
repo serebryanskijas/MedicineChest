@@ -1,5 +1,7 @@
 package MedicineChest.medicineChestMedicine;
 
+import MedicineChest.category.CategoryService;
+import MedicineChest.dosageForm.DosageFormService;
 import MedicineChest.medicine.Medicine;
 import MedicineChest.medicine.MedicineService;
 import MedicineChest.medicineChest.MedicineChestService;
@@ -23,17 +25,25 @@ public class MedicineChestMedicineController {
     @Autowired
     private MedicineChestService medicineChestService;
 
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private DosageFormService dosageFormService;
+
 
     @GetMapping(value ="/medicineChestMedicines" )
-    public String listMedicineChestMedicine(Model model) {
-        List<MedicineChestMedicine> t = medicineChestMedicineService.findAll();
-        model.addAttribute("medicineChestMedicines", t);
-
+    public String listMedicineChestMedicine(Model model, @RequestParam Long id) {
+        model.addAttribute("medicineChestMedicines" ,medicineChestMedicineService.findByMedicineChestId(id));
+        model.addAttribute("medicineChests", medicineChestService.findById(id));
         return "medicineChestMedicines";
     }
     @GetMapping(value ="/add_medicineChestMedicine")
     public String addMedicineChestMedicine(Model model) {
-        model.addAttribute("medicineChestMedicine",new MedicineChestMedicine()); //Если не добавить, то не будет выполняться парсинг шаблона исходной страницы
+        model.addAttribute("medicineChestMedicine",new MedicineChestMedicine());
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("dosageForms", dosageFormService.findAll());
+        model.addAttribute("medicines", medicineService.findAll());
         return "add_medicineChestMedicine";
     }
 

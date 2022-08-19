@@ -14,12 +14,16 @@ import java.util.List;
             return medicineChestMedicineRepository.findAll();
         }
 
-        public MedicineChestMedicine save(MedicineChestMedicine dosageForm) {
-            return medicineChestMedicineRepository.save(dosageForm);
+        public MedicineChestMedicine save(MedicineChestMedicine medicineChestMedicine) {
+            return medicineChestMedicineRepository.save(medicineChestMedicine);
         }
 
         public MedicineChestMedicine findById(Long id) {
             return medicineChestMedicineRepository.findById(id).get();
+        }
+
+        public List<MedicineChestMedicine> findByMedicineChestId(Long id) {
+            return medicineChestMedicineRepository.getByMedicineChestId(id);
         }
 
         public void deleteById(Long id) {

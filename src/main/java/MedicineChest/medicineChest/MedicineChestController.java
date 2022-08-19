@@ -1,5 +1,6 @@
 package MedicineChest.medicineChest;
 
+import MedicineChest.medicineChestMedicine.MedicineChestMedicineService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class MedicineChestController {
 
     @Autowired
     private MedicineChestService medicineChestService;
+
+    @Autowired
+    private MedicineChestMedicineService medicineChestMedicineService;
 
     private final Logger logger = LoggerFactory.getLogger(MedicineChestController.class);;
 
