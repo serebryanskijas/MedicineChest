@@ -32,24 +32,23 @@
 			<select class="form-select" aria-label="DosageForm" id="name" name="name" required>
 				<option></option>
 				<th:block th:each="medicine:${medicines}">
-					<option th:utext="${medicine.name+' &#171'+medicine.manufacturer+'&#187 '+medicine.dosage+' мг, '+medicine.dosageForm.form}"
-							th:value="${medicine.id}"></option>
+					<option
+						th:utext="${medicine.name+' &#171'+medicine.manufacturer+'&#187 '+medicine.dosage+' мг, '+medicine.dosageForm.form}"
+						th:value="${medicine.id}"></option>
 				</th:block>
 			</select>
 		</div>
-
-
 		<div class="mb-3">
 			<label for="expirationDate" class="form-label">Срок годности</label>
-			<input type="date" class="form-control" id="expirationDate" th:field="*{expirationDate}" REQUIRED>
+			<input type="date" th:value="*{expirationDate}" class="form-control" id="expirationDate"
+				   th:field="*{expirationDate}" REQUIRED>
 		</div>
 		<div class="mb-3">
 			<label for="count" class="form-label">Количество</label>
 			<input type="number" class="form-control" id="count" th:field="*{count}" required>
 		</div>
-
 		<button type="submit" class="btn btn-primary">Сохранить</button>
-		<a class="btn btn-secondary" th:href="@{/medicineChestMedicines}" th:text="Отмена"></a>
+		<a class="btn btn-secondary" th:href="@{/medicineChestMedicines(id=${currentId})}" th:text="Отмена"></a>
 	</form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

@@ -20,7 +20,7 @@
 <body>
 
 <div class="col py-3 container mt-5">
-    <h3 th:utext="${medicineChests.name}">Справочник препаратов</h3>
+    <h3 th:utext="${medicineChests.name}"></h3>
     <table class="table table-striped w-auto border-dark">
         <tr>
             <th>Наименование</th>
@@ -31,7 +31,7 @@
             <th>Срок годности</th>
             <th>Количество, шт</th>
             <th>
-                <a th:href="@{/add_medicineChestMedicine(id=${medicineChestMedicines})}">
+                <a th:href="@{/add_medicineChestMedicine(id=${medicineChests.id})}">
                     <i class="fa fa-plus" style="color: black" aria-hidden="true" title="Добавить препарат"></i></a>
             </th>
         </tr>

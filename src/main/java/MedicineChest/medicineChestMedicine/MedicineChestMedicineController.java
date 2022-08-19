@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -39,16 +41,21 @@ public class MedicineChestMedicineController {
         return "medicineChestMedicines";
     }
     @GetMapping(value ="/add_medicineChestMedicine")
-    public String addMedicineChestMedicine(Model model) {
+    public String addMedicineChestMedicine(Model model, @RequestParam Long id) {
         model.addAttribute("medicineChestMedicine",new MedicineChestMedicine());
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("dosageForms", dosageFormService.findAll());
         model.addAttribute("medicines", medicineService.findAll());
+        model.addAttribute("currentId", id);
+
         return "add_medicineChestMedicine";
     }
 
     @PostMapping(value="/add_medicineChestMedicine")
-    public String saveMedicineChestMedicine(MedicineChestMedicine medicineChestMedicine, Model model, HttpServletResponse response) {
+    public String saveMedicineChestMedicine(MedicineChestMedicine medicineChestMedicine,
+            @RequestParam(value = "expirationDate", defaultValue = "") String expirationDateString, Model model, HttpServletResponse response) {
+        LocalDate expirationDate = LocalDate.parse(expirationDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        medicineChestMedicine.setExpirationDate(expirationDate);
         System.out.println(medicineChestMedicine);
         //Передать id в заголовке ответа
         MedicineChestMedicine newMedicineChestMedicine = medicineChestMedicineService.save(medicineChestMedicine);
