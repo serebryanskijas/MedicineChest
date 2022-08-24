@@ -44,5 +44,6 @@ insert into medicine(name,manufacturer,dosage,description,category_id,dosage_for
 
 insert into medicine_chest_medicine(count,expiration_date,medicine_chest_id,medicine_id) values(1,'2022-03-03',1,1);
 insert into medicine_chest_medicine(count,expiration_date,medicine_chest_id,medicine_id) values(1,'2022-11-03',1,4);
+insert into medicine_chest_medicine(count,expiration_date,medicine_chest_id,medicine_id) values(1,'2022-12-03',2,4);
 
 

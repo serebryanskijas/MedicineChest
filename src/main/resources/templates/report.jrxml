@@ -7,68 +7,184 @@
 		<![CDATA[]]>
 	</queryString>
 	<field name="medicine" class="MedicineChest.medicine.Medicine"/>
+	<field name="expirationDate" class="java.util.Date"/>
+	<field name="count" class="java.lang.Integer"/>
+	<field name="medicineChest" class="MedicineChest.medicineChest.MedicineChest"/>
 	<title>
 		<band height="54">
 			<staticText>
-				<reportElement x="220" y="20" width="100" height="30" uuid="82c81e8b-8983-4aab-b7ac-4e1c81e87ed0"/>
-				<textElement textAlignment="Center">
-					<font size="18" isBold="true"/>
+				<reportElement x="0" y="30" width="180" height="23" uuid="82c81e8b-8983-4aab-b7ac-4e1c81e87ed0">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="C:\Windows\Fonts\arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[СПИСОК]]></text>
+				<text><![CDATA[Список лекарств:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="130" y="0" width="300" height="20" uuid="05b05411-a216-40d1-b10d-f7ee2b3af81a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true" pdfFontName="C:\Windows\Fonts\arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medicineChest}.getName()]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<columnHeader>
-		<band height="49" splitType="Stretch">
+		<band height="30" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="30" width="50" height="19" uuid="20a163e8-0a8c-44be-8401-342750b3b5cf"/>
-				<textElement textAlignment="Left">
-					<font fontName="Arial" size="14" isBold="true"/>
+				<reportElement x="0" y="10" width="219" height="20" forecolor="#000000" uuid="20a163e8-0a8c-44be-8401-342750b3b5cf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="C:\Windows\Fonts\arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[Id]]></text>
+				<text><![CDATA[Наименование]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="50" y="30" width="100" height="19" uuid="b80e8d79-179e-4120-8f50-c49c53294f40"/>
-				<textElement textAlignment="Left">
-					<font fontName="Arial" size="14" isBold="true"/>
+				<reportElement x="219" y="10" width="90" height="20" forecolor="#000000" uuid="b80e8d79-179e-4120-8f50-c49c53294f40">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="C:\Windows\Fonts\arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[First name]]></text>
+				<text><![CDATA[Производитель]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="150" y="30" width="100" height="19" uuid="acfa0935-6af7-47f2-9658-a25767dce09c"/>
-				<textElement textAlignment="Left">
-					<font fontName="Arial" size="14" isBold="true"/>
+				<reportElement x="369" y="10" width="50" height="20" forecolor="#000000" uuid="acfa0935-6af7-47f2-9658-a25767dce09c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="C:\Windows\Fonts\arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[Last name]]></text>
+				<text><![CDATA[Форма]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="250" y="30" width="100" height="19" uuid="350e03e0-452c-4a87-bd6d-e0d6112d6658"/>
-				<textElement textAlignment="Left">
-					<font fontName="Arial" size="14" isBold="true"/>
+				<reportElement x="419" y="10" width="90" height="20" forecolor="#000000" uuid="350e03e0-452c-4a87-bd6d-e0d6112d6658">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="C:\Windows\Fonts\arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[Email]]></text>
+				<text><![CDATA[Срок годности]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="350" y="30" width="100" height="19" uuid="5b8ed4b5-c7f3-4776-b506-d1283409766e"/>
-				<textElement textAlignment="Left">
-					<font fontName="Arial" size="14" isBold="true"/>
+				<reportElement x="509" y="10" width="50" height="20" forecolor="#000000" uuid="5b8ed4b5-c7f3-4776-b506-d1283409766e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="C:\Windows\Fonts\arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[Company]]></text>
+				<text><![CDATA[Кол-во]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="10" width="60" height="20" forecolor="#000000" uuid="cd1eb75b-cd7a-4c58-a922-c14fe25ffafb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="C:\Windows\Fonts\arial.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Дозировка]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="43" splitType="Stretch">
+		<band height="17" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="440" height="29" uuid="7337168a-363f-4438-a38e-e4859fb6fdd1"/>
+				<reportElement x="0" y="0" width="219" height="17" uuid="7337168a-363f-4438-a38e-e4859fb6fdd1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineColor="#080808"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Times New Roman" pdfFontName="C:\Windows\Fonts\times.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+					<font fontName="Times New Roman" isItalic="true" pdfFontName="C:\Windows\Fonts\times.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{medicine}.getName()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="469" y="13" width="100" height="16" uuid="331868d1-4cce-4a1d-965c-4175cf61f54a"/>
-				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+				<reportElement x="219" y="0" width="90" height="17" uuid="393f8bba-d623-4179-a15c-e20b291a2095">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineColor="#080808"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isItalic="true" pdfFontName="C:\Windows\Fonts\times.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medicine}.getManufacturer()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="0" width="60" height="17" uuid="41e38393-3c52-41e7-8f75-ca67b475fdd3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineColor="#080808"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isItalic="true" pdfFontName="C:\Windows\Fonts\times.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{medicine}.getDosage()) != null ? $F{medicine}.getDosage() : " "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="369" y="0" width="50" height="17" uuid="acd7a29c-b7ce-4c45-9dab-5d0f6392e133">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineColor="#080808"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isItalic="true" pdfFontName="C:\Windows\Fonts\times.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medicine}.getDosageForm().getForm()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="509" y="0" width="50" height="17" uuid="fc421f96-d131-42b9-b695-06134351aeb4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineColor="#080808"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isItalic="true" pdfFontName="C:\Windows\Fonts\times.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

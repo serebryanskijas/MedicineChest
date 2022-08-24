@@ -46,7 +46,9 @@
 			<th>Количество, шт</th>
 			<th>
 				<a th:href="@{/add_medicineChestMedicine(id=${medicineChests.id})}">
-					<i class="fa fa-plus" style="color: black" aria-hidden="true" title="Добавить препарат"></i></a>
+					<i class="fa fa-plus" style="color: #4CAF50" aria-hidden="true" title="Добавить препарат"></i></a>
+				<a class="m-2" th:href="@{/report(id=${medicineChests.id})}">
+					<i class="fa fa-print" style="color: cornflowerblue" aria-hidden="true" title="Экспорт в PDF"></i></a>
 			</th>
 		</tr>
 		<tbody>
