@@ -1,24 +1,29 @@
-.wrapper{
-    margin:auto;
-    width:50%;
-    margin-top:16px;
+.wrapper {
+    margin: auto;
+    width: 50%;
+    margin-top: 16px;
 }
 
 input[type=radio] {
     display: none;
 }
+
 input[type=radio]:checked + label span {
     transform: scale(1.25);
 }
+
 input[type=radio]:checked + label .red {
     border: 2px solid #711313;
 }
+
 input[type=radio]:checked + label .yellow {
     border: 2px solid #816102;
 }
+
 input[type=radio]:checked + label .green {
     border: 2px solid #0e4e1d;
 }
+
 input[type=radio]:checked + label .blue {
     border: 2px solid #103f62;
 }
@@ -41,15 +46,19 @@ label span {
     height: 100%;
     transition: transform 0.2s ease-in-out;
 }
+
 label span.red {
     background: #DB2828;
 }
+
 label span.yellow {
     background: #FBBD08;
 }
+
 label span.green {
     background: #21BA45;
 }
+
 label span.blue {
     background: #2185D0;
 }
@@ -59,17 +68,62 @@ nav {
     width: 660px;
     margin: 0 auto 30px;
 }
+
 .one ul {
     padding: 1em 0;
     background: #ECDAD6;
 }
+
 .one a {
     padding: 1em;
     background: rgba(177, 152, 145, .3);
     border-right: 1px solid #b19891;
     color: #695753;
 }
-.one a:hover {background: #b19891;}
+
+.one a:hover {
+    background: #b19891;
+}
+
 .one li {
     display: inline;
+}
+
+.addMedChestPop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    top: 0;
+    left: 0;
+}
+
+.addMedChestPop__body {
+    min-height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+}
+
+.addMedChestPop__content {
+    background-color: #f7f8f9;
+    color: #000000;
+    max-width: 800px;
+    padding: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+}
+
+.formAdd {
+    width: 400px;
+}
+
+.form-label {
+    font-size: 30px;
+    margin: 0 0 1em 0;
+}
+
+.form-control {
+    width: 20px;
 }

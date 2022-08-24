@@ -1,75 +1,91 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Моя аптечка</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-          integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css"
-          rel="stylesheet">
-    <style>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Моя аптечка</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		  integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+		  crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css"
+		  rel="stylesheet">
+	<style>
 
-    </style>
+	</style>
 </head>
 <body>
 
 <div class="col py-3 container mt-5">
-    <h3 th:utext="${medicineChests.name}"></h3>
-    <table class="table table-striped w-auto border-dark">
-        <tr>
-            <th>Наименование</th>
-            <th>Производитель</th>
-            <th>Дозировка, мг</th>
-            <th>Категория</th>
-            <th>Форма</th>
-            <th>Срок годности</th>
-            <th>Количество, шт</th>
-            <th>
-                <a th:href="@{/add_medicineChestMedicine(id=${medicineChests.id})}">
-                    <i class="fa fa-plus" style="color: black" aria-hidden="true" title="Добавить препарат"></i></a>
-            </th>
-        </tr>
-        <tbody>
-        <tr th:each="medicineChestMedicine: ${medicineChestMedicines}">
-            <td th:utext="${medicineChestMedicine.medicine.name}"></td>
-            <td th:utext="${medicineChestMedicine.medicine.manufacturer}"></td>
-            <td th:utext="${medicineChestMedicine.medicine.dosage}"></td>
-            <td th:utext="${medicineChestMedicine.medicine.category.name}"></td>
-            <td>
-                <label th:if="${medicineChestMedicine.medicine.dosageForm!=null}" th:utext="${medicineChestMedicine.medicine.dosageForm.form}"></label>
-            </td>
-            <td th:utext="${medicineChestMedicine.expirationDate}"></td>
-            <td th:utext="${medicineChestMedicine.count}"></td>
+	<h3 th:utext="${medicineChests.name}"></h3>
 
-            <td id="button">
-                <!--<div class="row">
-                    <div class="col-6">
-                        <a th:href="@{/edit_medicine(id=${medicine.id})}"><i class="fa fa-pencil" style="color: black"
-                                                                             aria-hidden="true"
-                                                                             title="Редактировать"></i></a>
-                    </div>-->
-                    <div class="col-6">
-                        <a th:href="@{/delete_medicineChestMedicine(id=${medicineChestMedicine.id})}"><i class="fa fa-trash-o"
-                                                                               style="color: black" aria-hidden="true"
-                                                                               title="Удалить"></i></a></div>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+	<form th:action="@{/medicineChestMedicines}">
+		<input name="id" type="hidden" th:value="${medicineChests.id}">
+		<select name="category" th:with="saveSelectState=${saveSelectState}">
+			<option value="-1" selected="selected">
+				Все
+			</option>
+			<option th:each="category : ${categoryList}"
+					th:value="${category.id}" th:selected="${#strings.equals(category.id, __${saveSelectState}__)}"
+					th:text="${category.name}"></option>
+		</select>
+		<input type="submit" value="Посчитать"><br><br><br>
+	</form>
+
+	<table class="table table-striped w-auto border-dark">
+		<tr>
+			<th>Наименование</th>
+			<th>Производитель</th>
+			<th>Дозировка, мг</th>
+			<th>Категория</th>
+			<th>Форма</th>
+			<th>Срок годности</th>
+			<th>Количество, шт</th>
+			<th>
+				<a th:href="@{/add_medicineChestMedicine(id=${medicineChests.id})}">
+					<i class="fa fa-plus" style="color: black" aria-hidden="true" title="Добавить препарат"></i></a>
+			</th>
+		</tr>
+		<tbody>
+		<tr th:each="medicineChestMedicine: ${medicineChestMedicines}">
+			<td th:utext="${medicineChestMedicine.medicine.name}"></td>
+			<td th:utext="${medicineChestMedicine.medicine.manufacturer}"></td>
+			<td th:utext="${medicineChestMedicine.medicine.dosage}"></td>
+			<td th:utext="${medicineChestMedicine.medicine.category.name}"></td>
+			<td>
+				<label th:if="${medicineChestMedicine.medicine.dosageForm!=null}"
+					   th:utext="${medicineChestMedicine.medicine.dosageForm.form}"></label>
+			</td>
+			<td th:utext="${medicineChestMedicine.expirationDate}"></td>
+			<td th:utext="${medicineChestMedicine.count}"></td>
+
+			<td id="button">
+				<!--<div class="row">
+					<div class="col-6">
+						<a th:href="@{/edit_medicine(id=${medicine.id})}"><i class="fa fa-pencil" style="color: black"
+																			 aria-hidden="true"
+																			 title="Редактировать"></i></a>
+					</div>-->
+				<div class="col-6">
+					<a th:href="@{/delete_medicineChestMedicine(id=${medicineChestMedicine.id})}"><i
+						class="fa fa-trash-o"
+						style="color: black" aria-hidden="true"
+						title="Удалить"></i></a></div>
+
+			</td>
+		</tr>
+		</tbody>
+	</table>
 
 </div>
 
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
 </body>
 </html>

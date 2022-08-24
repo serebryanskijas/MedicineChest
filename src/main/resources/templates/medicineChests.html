@@ -29,16 +29,18 @@
 </head>
 <body>
 <div th:fragment="sidebar">
-	<header  class="py-3 mb-4 border-bottom shadow">
+	<header class="py-3 mb-4 border-bottom shadow">
 		<div class="container-fluid align-items-center d-flex">
 			<div class="px-3">
-				<a href="/"><img th:src="@{/img/snake.png}" style="width: 10%;"/></a>
+				<a href="/"><img th:src="@{/img/snake.png}" style="width: 10%;" /></a>
 			</div>
 			<div class="flex-grow-1 d-flex">
 				<h3 class="w-100 me-3 text-decoration-none" style="color: #1a6ff9">Моя домашняя аптечка</h3>
 				<div class="flex-shrink-0 dropdown">
-					<a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-						<img src="https://via.placeholder.com/28?text=!" alt="user" width="32" height="32" class="rounded-circle">
+					<a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
+					   data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="https://via.placeholder.com/28?text=!" alt="user" width="32" height="32"
+							 class="rounded-circle">
 					</a>
 					<ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownUser2" style="">
 						<li><a class="dropdown-item" href="#">Настройки</a></li>
@@ -66,7 +68,8 @@
 						<li>
 							<a href="#" class="nav-link px-2 text-truncate">
 								<i class="fa fa-calendar-plus-o" style="font-size:1.3rem" aria-hidden="true"></i>
-								<span class="d-none d-sm-inline px-2" style="font-size:1.1rem">Справочник лекарств</span>
+								<span class="d-none d-sm-inline px-2"
+									  style="font-size:1.1rem">Справочник лекарств</span>
 							</a>
 						</li>
 					</ul>
@@ -75,33 +78,47 @@
 			<main class="col overflow-auto h-100">
 				<div class="bg-light border rounded-3 p-3">
 					<h4>More content...</h4>
-					<p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
+					<p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free
+						Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of
+						them, vegan farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes
+						Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy
+						leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies,
+						forage fingerstache food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party
+						Portland.</p>
 					<hr />
-					<h4>Мои аптечки</h4>
-					<div class="col py-0 container mt-5">
-						<table class="table table-striped w-auto">
+					<h4 class="px-5">Мои аптечки</h4>
+					<div class="col py-5 container ">
+						<table class="table table-hover w-auto">
 							<tr>
 								<th>№</th>
-								<th>Название</th>
+								<th th:width="350px">Название</th>
 								<th>
 									<a th:href="@{/add_medicineChest(id=${medicineChests})}">
-										<i class="fa fa-plus" style="color: black" aria-hidden="true" title="Добавить аптечку"></i></a>
+										<i class="fa fa-plus" style="color: black" aria-hidden="true"
+										   title="Добавить аптечку"></i></a>
 								</th>
 							</tr>
+
 							<tbody>
+
 							<tr th:each="medicineChest: ${medicineChests}">
 								<td></td>
 								<td th:utext="${medicineChest.name}"></td>
+
 								<td id="button">
-									<a th:href="@{/update_medicineChest(id=${medicineChest.id})}"><i class="fa fa-pencil" aria-hidden="true"
-																									 title="Редактировать название"></i></a>
+									<a th:href="@{/update_medicineChest(id=${medicineChest.id})}"><i
+										class="fa fa-pencil" aria-hidden="true"
+										title="Редактировать название"></i></a>
 									&nbsp
-									<a th:href="@{/medicineChestMedicines(id=${medicineChest.id})}"><i class="fa fa-sign-in" aria-hidden="true"
-																								   title="Открыть"></i></a>
+									<a th:href="@{/medicineChestMedicines(id=${medicineChest.id})}"><i
+										class="fa fa-sign-in" aria-hidden="true"
+										title="Открыть"></i></a>
 									&nbsp
-									<a th:href="@{/delete_medicineChest(id=${medicineChest.id})}"><i class="fa fa-trash-o"
-																									 aria-hidden="true" title="Удалить"></i></a>
+									<a th:href="@{/delete_medicineChest(id=${medicineChest.id})}"><i
+										class="fa fa-trash-o"
+										aria-hidden="true" title="Удалить"></i></a>
 								</td>
+								</div>
 							</tr>
 							</tbody>
 						</table>

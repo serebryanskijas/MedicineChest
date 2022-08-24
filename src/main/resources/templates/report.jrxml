@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.3.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="group" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c1d9b4b7-6162-4b17-b871-3cf3b867d1ef">
+	<import value="MedicineChest.medicineChestMedicine.*"/>
+	<parameter name="name" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="medicine" class="MedicineChest.medicine.Medicine"/>
+	<title>
+		<band height="54">
+			<staticText>
+				<reportElement x="220" y="20" width="100" height="30" uuid="82c81e8b-8983-4aab-b7ac-4e1c81e87ed0"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[СПИСОК]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="30" width="50" height="19" uuid="20a163e8-0a8c-44be-8401-342750b3b5cf"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="30" width="100" height="19" uuid="b80e8d79-179e-4120-8f50-c49c53294f40"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[First name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="30" width="100" height="19" uuid="acfa0935-6af7-47f2-9658-a25767dce09c"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Last name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="30" width="100" height="19" uuid="350e03e0-452c-4a87-bd6d-e0d6112d6658"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="30" width="100" height="19" uuid="5b8ed4b5-c7f3-4776-b506-d1283409766e"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Company]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="440" height="29" uuid="7337168a-363f-4438-a38e-e4859fb6fdd1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" pdfFontName="C:\Windows\Fonts\times.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medicine}.getName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="13" width="100" height="16" uuid="331868d1-4cce-4a1d-965c-4175cf61f54a"/>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

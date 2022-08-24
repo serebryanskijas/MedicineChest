@@ -34,12 +34,24 @@ public class MedicineChestMedicineController {
     private DosageFormService dosageFormService;
 
 
-    @GetMapping(value ="/medicineChestMedicines" )
+    @GetMapping(value = "/medicineChestMedicines")
+    public String listMedicineChestMedicine(Model model, @RequestParam Long id, @RequestParam(name = "category", required = false) Long category) {
+        if (category == null || category==-1L) {
+            model.addAttribute("medicineChestMedicines", medicineChestMedicineService.findByMedicineChestId(id));
+        } else {
+            model.addAttribute("medicineChestMedicines", medicineChestMedicineService.findByCategory(id, category));
+            model.addAttribute("saveSelectState", category);
+        }
+        model.addAttribute("medicineChests", medicineChestService.findById(id));
+        model.addAttribute("categoryList", categoryService.findAll());
+        return "medicineChestMedicines";
+    }
+    /*@GetMapping(value ="/medicineChestMedicines" )
     public String listMedicineChestMedicine(Model model, @RequestParam Long id) {
         model.addAttribute("medicineChestMedicines" ,medicineChestMedicineService.findByMedicineChestId(id));
         model.addAttribute("medicineChests", medicineChestService.findById(id));
         return "medicineChestMedicines";
-    }
+    }*/
     @GetMapping(value ="/add_medicineChestMedicine")
     public String addMedicineChestMedicine(Model model, @RequestParam Long id) {
         model.addAttribute("medicineChestMedicine",new MedicineChestMedicine());
