@@ -40,10 +40,10 @@
 		</div>
 		<div class="mb-3">
 			<label for="dosageForm" class="form-label">Форма выпуска</label>
-			<select class="form-select" aria-label="DosageForm" id="dosageForm" name="dosageForm">
+			<select class="form-select" aria-label="DosageForm" id="dosageForm" name="dosageForm" required>
 				<option></option>
 				<th:block th:each="dosageForm:${dosageForms}">
-					<option th:utext="${dosageForm.form}" th:value="${dosageForm.id}"></option>
+					<option th:utext="${dosageForm.form}" th:value="${dosageForm.id}" ></option>
 				</th:block>
 			</select>
 		</div>

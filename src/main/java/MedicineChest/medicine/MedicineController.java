@@ -56,19 +56,24 @@ public class MedicineController {
         return "redirect:/medicines";
     }
 
-    @GetMapping(value = "/edit_medicine")
+    @GetMapping(value = "/update_medicine")
     public String editMedicine(Model model, @RequestParam(name = "id") Long id) {
         Medicine medicine = medicineService.findById(id);
         model.addAttribute("medicine", medicine);
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("dosageForm", dosageFormService.findAll());
-        return "edit_medicine";
+        return "update_medicine";
     }
 
-    @PutMapping(value = "/update_medicine")
+    @PostMapping(value = "/update_medicine")
     public String updateMedicine(Medicine medicine, Model model) {
         Medicine medicineDb = medicineService.findById(medicine.getId());
         medicineDb.setName(medicine.getName());
+        medicineDb.setManufacturer(medicine.getManufacturer());
+        medicineDb.setDosage(medicine.getDosage());
+        medicineDb.setCategory(medicine.getCategory());
+        medicineDb.setDosageForm(medicine.getDosageForm());
+        medicineDb.setDescription(medicine.getDescription());
         medicineService.save(medicineDb);
         model.addAttribute("medicine", medicineService.findAll());
         return "redirect:/medicines";

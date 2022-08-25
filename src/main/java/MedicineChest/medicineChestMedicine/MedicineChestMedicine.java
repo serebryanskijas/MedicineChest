@@ -36,11 +36,5 @@ public class MedicineChestMedicine {
     @ManyToOne(fetch = FetchType.LAZY)
     private Medicine medicine;
 
-   /* @OneToOne
-    private Medicine medicine;
-
-    @OneToOne
-    private MedicineChest medicineChest;*/
-
 }
 

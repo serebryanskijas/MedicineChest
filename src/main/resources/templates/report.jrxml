@@ -117,7 +117,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="17" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="219" height="17" uuid="7337168a-363f-4438-a38e-e4859fb6fdd1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -185,6 +185,19 @@
 					<font fontName="Times New Roman" isItalic="true" pdfFontName="C:\Windows\Fonts\times.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="0" width="90" height="17" uuid="dfe16d0b-7f26-44ef-9228-c076fddf1149">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="0">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+					<topPen lineColor="#080808"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isItalic="true" pdfFontName="C:\Windows\Fonts\times.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{expirationDate}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -5,7 +5,8 @@
 	<meta name="viewport"
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Моя аптечка</title>
+	<title>Справочник препаратов</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 		  integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
 		  crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,7 +31,7 @@
 			<th>Форма</th>
 			<th>
 				<a th:href="@{/add_medicine(id=${medicine})}">
-					<i class="fa fa-plus" style="color: black" aria-hidden="true" title="Добавить препарат"></i></a>
+					<i class="fa fa-plus" style="color: #4CAF50" aria-hidden="true" title="Добавить препарат"></i></a>
 			</th>
 		</tr>
 		<tbody>
@@ -44,12 +45,18 @@
 			</td>
 			<td id="button">
 				<div class="row">
-					<div class="col-6">
-						<a th:href="@{/edit_medicine(id=${medicine.id})}"><i class="fa fa-pencil" style="color: black"
-																			 aria-hidden="true"
-																			 title="Редактировать"></i></a>
+					<div class="col-3">
+						<a href="#infPopup"><i class="fa fa-info-circle"
+											   style="color: #4CAF50"
+											   aria-hidden="true"
+											   title="Описание препарата"></i></a>
 					</div>
-					<div class="col-6">
+					<div class="col-3">
+						<a th:href="@{/update_medicine(id=${medicine.id})}"><i class="fa fa-pencil" style="color: black"
+																			   aria-hidden="true"
+																			   title="Редактировать"></i></a>
+					</div>
+					<div class="col-3">
 						<a th:href="@{/delete_medicine(id=${medicine.id})}"><i class="fa fa-trash-o"
 																			   style="color: black" aria-hidden="true"
 																			   title="Удалить"></i></a></div>
@@ -58,10 +65,19 @@
 		</tr>
 		</tbody>
 	</table>
-
 </div>
-
-
+</div>
+<div id="infPopup" class="infPopup">
+	<div class="infPopup_body">
+		<div class="infPopup__content">
+			<a href="#" class="infPopup_close">
+				<i class="fa fa-times" style="color: black" aria-hidden="true" title="Закрыть"></i></a>
+			<div class="infPopup__title">Описание</div>
+			<div class="infPopup__text">
+				<p th:each="medicine: ${medicines}" th:utext="${medicine.description}" th:value="${medicine.id}"></p>
+			</div>
+		</div>
+	</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
