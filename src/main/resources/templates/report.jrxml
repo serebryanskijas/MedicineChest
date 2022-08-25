@@ -7,7 +7,7 @@
 		<![CDATA[]]>
 	</queryString>
 	<field name="medicine" class="MedicineChest.medicine.Medicine"/>
-	<field name="expirationDate" class="java.util.Date"/>
+	<field name="expirationDate" class="java.time.LocalDate"/>
 	<field name="count" class="java.lang.Integer"/>
 	<field name="medicineChest" class="MedicineChest.medicineChest.MedicineChest"/>
 	<title>
@@ -117,7 +117,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="22" splitType="Stretch">
+		<band height="17" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="219" height="17" uuid="7337168a-363f-4438-a38e-e4859fb6fdd1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -197,7 +197,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Times New Roman" isItalic="true" pdfFontName="C:\Windows\Fonts\times.ttf" pdfEncoding="Cp1251" isPdfEmbedded="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{expirationDate}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{expirationDate}.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd"))]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -28,6 +28,7 @@ public class ReportController {
     @RequestMapping(value = "/report", params = {})
     public void generateReport(HttpServletResponse response, @RequestParam Long id) throws IOException, JRException {
         List<MedicineChestMedicine> medicineChestMedicines = medicineChestMedicineService.findByMedicineChestId(id);
+
         JasperPrint jasperPrint = null;
         try {
             jasperPrint = reportService.exportReport(medicineChestMedicines, "report.jrxml");
