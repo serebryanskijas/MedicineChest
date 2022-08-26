@@ -6,6 +6,7 @@
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Моя аптечка</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 		  integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
 		  crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -46,12 +47,12 @@
 	</header>
 	<div class="container-fluid pb-3 flex-grow-1 d-block flex-column flex-sm-row overflow-auto">
 		<div class="row flex-grow-sm-1 flex-grow-0">
-			<aside class="col-sm-2 flex-grow-sm-1 flex-shrink-1 flex-grow-0 sticky-top pb-sm-0 pb-3">
-				<div class="bg-light border rounded-3 p-1 h-100 sticky-top">
+			<aside class="col-sm-2 flex-grow-sm-1 flex-shrink-1 flex-grow-0 pb-sm-0 pb-3">
+				<div class="bg-light border rounded-3 p-1 h-100">
 					<ul class="nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate">
 						<li class="nav-item">
 							<a th:href="@{/medicineChests}" class="nav-link px-2 text-truncate">
-								<i class="fa fa-medkit " style="font-size:1.3rem" aria-hidden="true"></i>
+								<i class="fa fa-medkit" style="font-size:1.3rem" aria-hidden="true"></i>
 								<span class="d-none d-sm-inline px-2" style="font-size:1.1rem">Аптечка</span>
 							</a>
 						</li>
@@ -120,7 +121,19 @@
 			</td>
 			<td th:utext="${medicineChestMedicine.expirationDate}"></td>
 			<td th:utext="${medicineChestMedicine.count}"></td>
-
+			<div th:id="'infPopup'+${medicineChestMedicine.id}" class="infPopup">
+				<div class="infPopup_body">
+					<div class="infPopup__content">
+						<a href="#" class="infPopup_close">
+							<i class="fa fa-times" style="color: black" aria-hidden="true" title="Закрыть"></i></a>
+						<div class="infPopup__title" th:utext="${medicineChestMedicine.medicine.name+' '+medicineChestMedicine.medicine.dosage+'мг '+'('+medicineChestMedicine.medicine.dosageForm.form+')'}"></div>
+						<label class="p-3" style="font-size: 20px">Описание:</label><br>
+						<div class="infPopup__text">
+							<p  th:utext="${medicineChestMedicine.medicine.description}" th:value="${medicineChestMedicine.medicine.id}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
 			<td id="button">
 				<!--<div class="row">
 					<div class="col-6">
@@ -128,8 +141,15 @@
 																			 aria-hidden="true"
 																			 title="Редактировать"></i></a>
 					</div>-->
+				<div class="row">
+					<div class="col-3">
+						<a th:href="'#infPopup'+${medicineChestMedicine.id}"><i class="fa fa-info-circle"
+																   style="color: #4CAF50"
+																   aria-hidden="true"
+																   title="Описание препарата"></i></a>
+					</div>
 				<div class="col-6">
-					<a th:href="@{/delete_medicineChestMedicine(id=${medicineChestMedicine.id})}"><i
+					<a th:href="@{/delete_medicineChestMedicine(id=${medicineChestMedicine.id},chestId=${medicineChestMedicine.medicineChest.id})}"><i
 						class="fa fa-trash-o"
 						style="color: black" aria-hidden="true"
 						title="Удалить"></i></a></div>

@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MedicineChestApplication implements CommandLineRunner {
+public class MedicineChestApplication {
 
     private final TestService testService;
 
@@ -19,10 +19,6 @@ public class MedicineChestApplication implements CommandLineRunner {
         SpringApplication.run(MedicineChestApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        MedicineChestMedicine medicine = testService.getMedicineChestMedicineById(1L);
-        System.out.println(23);
-    }
+
 
 }

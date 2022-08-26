@@ -55,6 +55,7 @@ public class MedicineChestMedicineController {
     @GetMapping(value ="/add_medicineChestMedicine")
     public String addMedicineChestMedicine(Model model, @RequestParam Long id) {
         model.addAttribute("medicineChestMedicine",new MedicineChestMedicine());
+        model.addAttribute("medicineChest", medicineChestService.findById(id));
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("dosageForms", dosageFormService.findAll());
         model.addAttribute("medicines", medicineService.findAll());
@@ -65,9 +66,7 @@ public class MedicineChestMedicineController {
 
     @PostMapping(value="/add_medicineChestMedicine")
     public String saveMedicineChestMedicine(MedicineChestMedicine medicineChestMedicine,
-            @RequestParam(value = "expirationDate", defaultValue = "") String expirationDateString, Model model, HttpServletResponse response) {
-        LocalDate expirationDate = LocalDate.parse(expirationDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        medicineChestMedicine.setExpirationDate(expirationDate);
+            Model model, HttpServletResponse response) {
         System.out.println(medicineChestMedicine);
         //Передать id в заголовке ответа
         MedicineChestMedicine newMedicineChestMedicine = medicineChestMedicineService.save(medicineChestMedicine);
@@ -78,9 +77,9 @@ public class MedicineChestMedicineController {
     }
 
     @GetMapping(value = "/delete_medicineChestMedicine")
-    public String deleteMedicineChestMedicine(@RequestParam(name="id")Long id) {
+    public String deleteMedicineChestMedicine(@RequestParam(name="id")Long id, @RequestParam Long chestId) {
         medicineChestMedicineService.deleteById(id);
-        return "redirect:/medicineChestMedicines";
+        return "redirect:/medicineChestMedicines?id="+chestId;
     }
 
     @GetMapping(value ="/edit_medicineChestMedicine")
