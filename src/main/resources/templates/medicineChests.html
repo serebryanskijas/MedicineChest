@@ -13,18 +13,7 @@
 		  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css"
 		  rel="stylesheet">
-	<style>
-        #button {
-            display: flex;
-            padding: 10px;
-        }
 
-        #button > a > i {
-            color: #1a1e21;
-            padding: 5px;
-            align-items: center;
-        }
-	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
@@ -60,13 +49,13 @@
 				<div class="bg-light border rounded-3 p-1 h-100 sticky-top">
 					<ul class="nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate">
 						<li class="nav-item">
-							<a href="#" class="nav-link px-2 text-truncate">
+							<a th:href="@{/medicineChests}" class="nav-link px-2 text-truncate">
 								<i class="fa fa-medkit " style="font-size:1.3rem" aria-hidden="true"></i>
 								<span class="d-none d-sm-inline px-2" style="font-size:1.1rem">Аптечка</span>
 							</a>
 						</li>
 						<li>
-							<a href="#" class="nav-link px-2 text-truncate">
+							<a th:href="@{/medicines}" class="nav-link px-2 text-truncate">
 								<i class="fa fa-calendar-plus-o" style="font-size:1.3rem" aria-hidden="true"></i>
 								<span class="d-none d-sm-inline px-2"
 									  style="font-size:1.1rem">Справочник лекарств</span>
@@ -118,15 +107,17 @@
 										class="fa fa-trash-o"
 										aria-hidden="true" title="Удалить"></i></a>
 								</td>
-								</div>
-							</tr>
-							</tbody>
-						</table>
-					</div>
+
+
+					</tr>
+					</tbody>
+					</table>
 				</div>
-			</main>
+
 		</div>
+		</main>
 	</div>
+</div>
 </div>
 
 

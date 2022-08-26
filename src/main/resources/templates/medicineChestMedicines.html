@@ -18,7 +18,64 @@
 	</style>
 </head>
 <body>
-
+<div th:fragment="sidebar">
+	<header class="py-3 mb-4 border-bottom shadow">
+		<div class="container-fluid align-items-center d-flex">
+			<div class="px-3">
+				<a href="/"><img th:src="@{/img/snake.png}" style="width: 10%;" /></a>
+			</div>
+			<div class="flex-grow-1 d-flex">
+				<h3 class="w-100 me-3 text-decoration-none" style="color: #1a6ff9">Моя домашняя аптечка</h3>
+				<div class="flex-shrink-0 dropdown">
+					<a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
+					   data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="https://via.placeholder.com/28?text=!" alt="user" width="32" height="32"
+							 class="rounded-circle">
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownUser2" style="">
+						<li><a class="dropdown-item" href="#">Настройки</a></li>
+						<li><a class="dropdown-item" href="#">Профиль</a></li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+						<li><a class="dropdown-item" href="#">Выход</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="container-fluid pb-3 flex-grow-1 d-block flex-column flex-sm-row overflow-auto">
+		<div class="row flex-grow-sm-1 flex-grow-0">
+			<aside class="col-sm-2 flex-grow-sm-1 flex-shrink-1 flex-grow-0 sticky-top pb-sm-0 pb-3">
+				<div class="bg-light border rounded-3 p-1 h-100 sticky-top">
+					<ul class="nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate">
+						<li class="nav-item">
+							<a th:href="@{/medicineChests}" class="nav-link px-2 text-truncate">
+								<i class="fa fa-medkit " style="font-size:1.3rem" aria-hidden="true"></i>
+								<span class="d-none d-sm-inline px-2" style="font-size:1.1rem">Аптечка</span>
+							</a>
+						</li>
+						<li>
+							<a th:href="@{/medicines}" class="nav-link px-2 text-truncate">
+								<i class="fa fa-calendar-plus-o" style="font-size:1.3rem" aria-hidden="true"></i>
+								<span class="d-none d-sm-inline px-2"
+									  style="font-size:1.1rem">Справочник лекарств</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</aside>
+			<main class="col overflow-auto h-100">
+				<div class="bg-light border rounded-3 p-3">
+					<h4>More content...</h4>
+					<p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free
+						Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of
+						them, vegan farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes
+						Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy
+						leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies,
+						forage fingerstache food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party
+						Portland.</p>
+					<hr />
 <div class="col py-3 container mt-5">
 	<h3 th:utext="${medicineChests.name}"></h3>
 

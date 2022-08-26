@@ -23,7 +23,8 @@
             <select class="form-select" aria-label="Category" id="category" name="category" required>
                 <option></option>
                 <th:block th:each="category:${categories}">
-                    <option th:utext="${category.name}" th:value="${category.id}"></option>
+                    <option th:utext="${category.name}" th:value="${category.id}"
+                            th:selected="${#strings.equals(category.id, medicine.category.id)}"></option>
                 </th:block>
             </select>
         </div>
@@ -45,7 +46,8 @@
             <select class="form-select" aria-label="DosageForm" id="dosageForm" name="dosageForm" required>
                 <option></option>
                 <th:block th:each="dosageForm:${dosageForm}">
-                    <option th:utext="${dosageForm.form}" th:value="${dosageForm.id}" ></option>
+                    <option th:utext="${dosageForm.form}" th:value="${dosageForm.id}"
+                            th:selected="${#strings.equals(dosageForm.id, medicine.dosageForm.id)}"></option>
                 </th:block>
             </select>
         </div>

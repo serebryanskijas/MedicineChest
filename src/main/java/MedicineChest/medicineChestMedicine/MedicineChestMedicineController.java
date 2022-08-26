@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 
 @Controller
 public class MedicineChestMedicineController {
@@ -67,8 +66,7 @@ public class MedicineChestMedicineController {
     @PostMapping(value="/add_medicineChestMedicine")
     public String saveMedicineChestMedicine(MedicineChestMedicine medicineChestMedicine,
             @RequestParam(value = "expirationDate", defaultValue = "") String expirationDateString, Model model, HttpServletResponse response) {
-        LocalDate expirationDate = LocalDate.parse(expirationDateString, DateTimeFormatter.ofPattern("dd.MM.yyyy",
-                Locale.US));
+        LocalDate expirationDate = LocalDate.parse(expirationDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         medicineChestMedicine.setExpirationDate(expirationDate);
         System.out.println(medicineChestMedicine);
         //Передать id в заголовке ответа
