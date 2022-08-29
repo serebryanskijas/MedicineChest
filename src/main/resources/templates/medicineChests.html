@@ -16,6 +16,11 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+<style>
+	td, th{
+        color: #1a6ff9;
+	}
+</style>
 <body>
 <div th:fragment="sidebar">
 	<header class="py-3 mb-4 border-bottom shadow">
@@ -83,7 +88,7 @@
 								<th th:width="350px">Название</th>
 								<th>
 									<a th:href="@{/add_medicineChest(id=${medicineChests})}">
-										<i class="fa fa-plus" style="color: black" aria-hidden="true"
+										<i class="fa fa-plus" style="color: #4CAF50" aria-hidden="true"
 										   title="Добавить аптечку"></i></a>
 								</th>
 							</tr>
@@ -91,10 +96,10 @@
 							<tbody>
 
 							<tr th:each="medicineChest: ${medicineChests}">
-								<td></td>
+								<td style="color: #1a6ff9"></td>
 								<td th:utext="${medicineChest.name}"></td>
 
-								<td id="button">
+								<td id="button" style="color: black">
 									<a th:href="@{/update_medicineChest(id=${medicineChest.id})}"><i
 										class="fa fa-pencil" aria-hidden="true"
 										title="Редактировать название"></i></a>

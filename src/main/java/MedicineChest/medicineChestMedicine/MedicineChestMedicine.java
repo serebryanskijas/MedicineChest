@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.text.Format;
@@ -38,5 +39,9 @@ public class MedicineChestMedicine {
     @ManyToOne(fetch = FetchType.LAZY)
     private Medicine medicine;
 
+    @Transient
+    public Boolean isDateValid (){
+    return expirationDate.isAfter(LocalDate.now());
+    }
 }
 
