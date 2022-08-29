@@ -22,6 +22,7 @@
 			<div>
 				<form method="post" th:action="@{/add_medicineChestMedicine}" th:object="${medicineChestMedicine}">
 					<div class="mb-3">
+						<input type="hidden" th:field="${medicineChestMedicine.medicineChest}">
 						<label for="category" class="form-label">Категория</label>
 						<select class="form-select" aria-label="Category" id="category" name="category" required>
 							<option></option>
@@ -33,13 +34,10 @@
 					</div>
 					<div class="mb-3">
 						<label for="name" class="form-label">Наименоввание</label>
-						<select class="form-select" aria-label="DosageForm" id="name" name="name" required>
-							<option></option>
-							<th:block th:each="medicine:${medicines}">
-								<option
+						<select class="form-select" th:field="${medicineChestMedicine.medicine.id}" aria-label="DosageForm" id="name" name="name" required>
+								<option  th:each="medicine:${medicines}" id="medicine"
 									th:utext="${medicine.name+' &#171'+medicine.manufacturer+'&#187 '+medicine.dosage+' мг, '+medicine.dosageForm.form}"
 									th:value="${medicine.id}"></option>
-							</th:block>
 						</select>
 					</div>
 					<div class="mb-3">

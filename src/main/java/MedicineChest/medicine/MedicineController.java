@@ -32,6 +32,7 @@ public class MedicineController {
     @GetMapping(value = "/medicines")
     public String listMedicines(Model model) {
         model.addAttribute("medicines", medicineService.findAll());
+
         return "medicines";
     }
 

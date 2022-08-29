@@ -34,14 +34,10 @@
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Наименоввание</label>
-                        <select class="form-select" aria-label="DosageForm" id="name" name="name" required>
-                            <option></option>
-                            <th:block th:each="medicine:${medicines}">
-                                <option
-                                    th:utext="${medicine.name}"
-                                    th:value="${medicine.id}"
-                                    th:selected="${#strings.equals(medicine.id, medicineChestMedicine.medicine.id)}"></option>
-                            </th:block>
+                        <select class="form-select" th:field="${medicineChestMedicine.medicine.id}" aria-label="DosageForm" id="name" name="name" required>
+                            <option  th:each="medicine:${medicines}" id="medicine"
+                                     th:utext="${medicine.name+' &#171'+medicine.manufacturer+'&#187 '+medicine.dosage+' мг, '+medicine.dosageForm.form}"
+                                     th:value="${medicine.id}"></option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -54,7 +50,7 @@
                         <input type="number" class="form-control" id="count" th:field="*{count}" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
-                    <a class="btn btn-secondary" th:href="@{/medicineChestMedicines(id=${medicineChestMedicine.id})}"
+                    <a class="btn btn-secondary" th:href="@{/medicineChestMedicines(id=${medicineChestMedicine.medicineChest.id})}"
                        th:text="Отмена"></a>
                 </form>
             </div>

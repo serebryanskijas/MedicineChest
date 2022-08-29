@@ -4,6 +4,7 @@ import MedicineChest.category.CategoryService;
 import MedicineChest.dosageForm.DosageFormService;
 import MedicineChest.medicine.Medicine;
 import MedicineChest.medicine.MedicineService;
+import MedicineChest.medicineChest.MedicineChest;
 import MedicineChest.medicineChest.MedicineChestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,10 +34,10 @@ public class MedicineChestMedicineController {
     @Autowired
     private DosageFormService dosageFormService;
 
+
     @GetMapping(value = "/medicineChestMedicines")
-    public String listMedicineChestMedicine(Model model, @RequestParam Long id,
-            @RequestParam(name = "category", required = false) Long category) {
-        if (category == null || category == -1L) {
+    public String listMedicineChestMedicine(Model model, @RequestParam Long id, @RequestParam(name = "category", required = false) Long category) {
+        if (category == null || category==-1L) {
             model.addAttribute("medicineChestMedicines", medicineChestMedicineService.findByMedicineChestId(id));
         } else {
             model.addAttribute("medicineChestMedicines", medicineChestMedicineService.findByCategory(id, category));
@@ -47,17 +48,19 @@ public class MedicineChestMedicineController {
         model.addAttribute("categoryList", categoryService.findAll());
         return "medicineChestMedicines";
     }
-
     /*@GetMapping(value ="/medicineChestMedicines" )
     public String listMedicineChestMedicine(Model model, @RequestParam Long id) {
         model.addAttribute("medicineChestMedicines" ,medicineChestMedicineService.findByMedicineChestId(id));
         model.addAttribute("medicineChests", medicineChestService.findById(id));
         return "medicineChestMedicines";
     }*/
-    @GetMapping(value = "/add_medicineChestMedicine")
+    @GetMapping(value ="/add_medicineChestMedicine")
     public String addMedicineChestMedicine(Model model, @RequestParam Long id) {
-        model.addAttribute("medicineChestMedicine", new MedicineChestMedicine());
-        model.addAttribute("medicineChest", medicineChestService.findById(id));
+        MedicineChestMedicine medicineChestMedicine = new MedicineChestMedicine();
+        MedicineChest medicineChest = medicineChestService.findById(id);
+        medicineChestMedicine.setMedicineChest(medicineChest);
+        model.addAttribute("medicineChestMedicine", medicineChestMedicine);
+        model.addAttribute("medicineChest", medicineChest);
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("dosageForms", dosageFormService.findAll());
         model.addAttribute("medicines", medicineService.findAll());
@@ -66,41 +69,33 @@ public class MedicineChestMedicineController {
         return "add_medicineChestMedicine";
     }
 
-    @PostMapping(value = "/add_medicineChestMedicine")
-    public String saveMedicineChestMedicine(MedicineChestMedicine medicineChestMedicine,
-            Model model, HttpServletResponse response) {
-
+    @PostMapping(value="/add_medicineChestMedicine")
+    public String saveMedicineChestMedicine(MedicineChestMedicine medicineChestMedicine) {
         MedicineChestMedicine newMedicineChestMedicine = medicineChestMedicineService.save(medicineChestMedicine);
-        long id = newMedicineChestMedicine.getId();
-        response.addHeader("id", String.valueOf(id));
-        model.addAttribute("medicineChestMedicine", medicineChestMedicineService.findAll());
-        return "redirect:/medicineChestMedicines";
+        return "redirect:/medicineChestMedicines?id=" + medicineChestMedicine.getMedicineChest().getId();
     }
 
     @GetMapping(value = "/delete_medicineChestMedicine")
-    public String deleteMedicineChestMedicine(@RequestParam(name = "id") Long id, @RequestParam Long chestId) {
+    public String deleteMedicineChestMedicine(@RequestParam(name="id")Long id, @RequestParam Long chestId) {
         medicineChestMedicineService.deleteById(id);
-        return "redirect:/medicineChestMedicines?id=" + chestId;
+        return "redirect:/medicineChestMedicines?id="+chestId;
     }
 
-    @GetMapping(value = "/update_medicineChestMedicine")
-    public String updateMedicineChestMedicine(Model model, @RequestParam(name = "id") Long id) {
-        model.addAttribute("medicineChestMedicine", medicineChestMedicineService.findById(id));
-        model.addAttribute("medicineChest", medicineChestService.findById(id));
-        model.addAttribute("medicine", medicineService.findAll());
+    @GetMapping(value ="/update_medicineChestMedicine")
+    public String updateMedicineChestMedicine(Model model, @RequestParam(name="id")Long id) {
+        model.addAttribute("medicineChestMedicine",medicineChestMedicineService.findById(id));
+        model.addAttribute("medicines", medicineService.findAll());
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("dosageForm", dosageFormService.findAll());
         return "update_medicineChestMedicine";
     }
 
-    @PutMapping(value = "/update_medicineChestMedicine")
+    @PutMapping(value="/update_medicineChestMedicine")
     public String updateMedicineChestMedicine(MedicineChestMedicine medicineChestMedicine, Model model) {
-        MedicineChestMedicine medicineChestMedicineDb = medicineChestMedicineService.findById(
-                medicineChestMedicine.getId());
+        MedicineChestMedicine medicineChestMedicineDb = medicineChestMedicineService.findById(medicineChestMedicine.getId());
         medicineChestMedicineDb.setExpirationDate(medicineChestMedicine.getExpirationDate());
         medicineChestMedicineService.save(medicineChestMedicineDb);
         model.addAttribute("medicineChestMedicine", medicineChestMedicineService.findAll());
         return "redirect:/medicineChestMedicines";
     }
-
 }
