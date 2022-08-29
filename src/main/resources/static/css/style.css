@@ -150,7 +150,7 @@ nav {
 .infPopup__body {
     min-height: 100%;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     padding: 30px 10px;
 }
@@ -171,8 +171,9 @@ nav {
 
 }
 
-.infPopup_close {
+.infPopup__close {
     position: absolute;
     right: 10px;
     top: 10px;
 }
+
