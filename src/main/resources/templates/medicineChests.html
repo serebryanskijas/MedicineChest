@@ -27,7 +27,7 @@
 				<a href="/"><img th:src="@{/img/snake.png}" style="width: 10%" /></a>
 			</div>
 			<div class="flex-grow-1 d-flex">
-				<h3 class="w-100 me-3 text-decoration-none" style="color: #1a6ff9">Моя домашняя аптечка</h3>
+				<h3 class="w-100 me-3 text-decoration-none" style="color: #1a6ff9">Моя аптечка</h3>
 				<div class="flex-shrink-0 dropdown">
 					<a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2"
 					   data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,7 +53,7 @@
 					<ul class="nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate">
 						<li class="nav-item">
 							<a th:href="@{/medicineChests}" class="nav-link px-2 text-truncate">
-								<i class="fa fa-medkit " style="font-size:1.3rem" aria-hidden="true"></i>
+								<i class="fa fa-medkit" style="font-size:1.3rem" aria-hidden="true"></i>
 								<span class="d-none d-sm-inline px-2" style="font-size:1.1rem">Аптечка</span>
 							</a>
 						</li>
@@ -90,7 +90,7 @@
 									<div class="row">
 										<div class="col-3">
 											<a th:href="@{/medicineChestMedicines(id=${medicineChest.id})}">
-												<i class="fa fa-sign-in" aria-hidden="true" title="Открыть"
+												<i class="fa fa-medkit" aria-hidden="true" title="Открыть"
 												   style="font-size: 1.1em"></i>
 											</a>
 										</div>
