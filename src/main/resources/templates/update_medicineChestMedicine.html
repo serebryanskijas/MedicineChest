@@ -25,6 +25,8 @@
         <div class="addMedChestPop__content">
             <form method="post" th:action="@{/update_medicineChestMedicine}" th:object="${medicineChestMedicine}">
                 <div class="mb-3">
+                    <input type="hidden" th:field="${medicineChestMedicine.medicineChest}">
+                    <input type="hidden" th:field="${medicineChestMedicine.id}">
                     <label for="category" class="form-label">Категория</label>
                     <select class="form-select" aria-label="Category" id="category" name="category" required>
                         <option></option>

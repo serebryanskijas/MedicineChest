@@ -71,8 +71,25 @@ public class MedicineChestMedicineController {
 
     @PostMapping(value="/add_medicineChestMedicine")
     public String saveMedicineChestMedicine(MedicineChestMedicine medicineChestMedicine) {
-        MedicineChestMedicine newMedicineChestMedicine = medicineChestMedicineService.save(medicineChestMedicine);
+        medicineChestMedicineService.save(medicineChestMedicine);
         return "redirect:/medicineChestMedicines?id=" + medicineChestMedicine.getMedicineChest().getId();
+    }
+    @GetMapping(value ="/update_medicineChestMedicine")
+    public String updateMedicineChestMedicine(Model model, @RequestParam(name="id")Long id) {
+        model.addAttribute("medicineChestMedicine",medicineChestMedicineService.findById(id));
+        model.addAttribute("medicineChest", medicineChestService.getMedicineChest(id));
+        model.addAttribute("medicines", medicineService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("dosageForms", dosageFormService.findAll());
+        return "update_medicineChestMedicine";
+    }
+
+    @PostMapping(value="/update_medicineChestMedicine")
+    public String updateMedicineChestMedicine(MedicineChestMedicine medicineChestMedicine) {
+
+        medicineChestMedicineService.save(medicineChestMedicine);
+
+        return "redirect:/medicineChestMedicines?id="+medicineChestMedicine.getMedicineChest().getId();
     }
 
     @GetMapping(value = "/delete_medicineChestMedicine")
@@ -81,21 +98,5 @@ public class MedicineChestMedicineController {
         return "redirect:/medicineChestMedicines?id="+chestId;
     }
 
-    @GetMapping(value ="/update_medicineChestMedicine")
-    public String updateMedicineChestMedicine(Model model, @RequestParam(name="id")Long id) {
-        model.addAttribute("medicineChestMedicine",medicineChestMedicineService.findById(id));
-        model.addAttribute("medicines", medicineService.findAll());
-        model.addAttribute("categories", categoryService.findAll());
-        model.addAttribute("dosageForm", dosageFormService.findAll());
-        return "update_medicineChestMedicine";
-    }
 
-    @PutMapping(value="/update_medicineChestMedicine")
-    public String updateMedicineChestMedicine(MedicineChestMedicine medicineChestMedicine, Model model) {
-        MedicineChestMedicine medicineChestMedicineDb = medicineChestMedicineService.findById(medicineChestMedicine.getId());
-        medicineChestMedicineDb.setExpirationDate(medicineChestMedicine.getExpirationDate());
-        medicineChestMedicineService.save(medicineChestMedicineDb);
-        model.addAttribute("medicineChestMedicine", medicineChestMedicineService.findAll());
-        return "redirect:/medicineChestMedicines";
-    }
 }
