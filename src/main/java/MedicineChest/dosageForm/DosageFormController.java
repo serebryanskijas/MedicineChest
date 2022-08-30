@@ -13,19 +13,19 @@ public class DosageFormController {
     @Autowired
     private DosageFormService dosageFormService;
 
-    @GetMapping(value ="/add_dosageForm")
+    @GetMapping(value = "/add_dosageForm")
     public String index(Model model) {
-        model.addAttribute("dosageForm",new DosageForm()); //Если не добавить, то не будет выполняться парсинг шаблона исходной страницы
+        model.addAttribute("dosageForm", new DosageForm());
         return "add_dosageForm";
     }
 
-    @GetMapping(value ="/list_dosageForms" )
+    @GetMapping(value = "/list_dosageForms")
     public String listDosageForms(Model model) {
         model.addAttribute("dosageForms", dosageFormService.findAll());
         return "list_dosageForms";
     }
 
-    @PostMapping(value="/add_dosageForm")
+    @PostMapping(value = "/add_dosageForm")
     public String saveDosageForm(DosageForm dosageForm, Model model, HttpServletResponse response) {
         System.out.println(dosageForm);
         //Передать id в заголовке ответа
@@ -37,19 +37,19 @@ public class DosageFormController {
     }
 
     @DeleteMapping(value = "/delete_dosageForm")
-    public String deleteDosageForm(@RequestParam(name="id")Long id) {
+    public String deleteDosageForm(@RequestParam(name = "id") Long id) {
         dosageFormService.deleteById(id);
         return "redirect:/list_dosageForms";
     }
 
-    @GetMapping(value ="/edit_dosageForm")
-    public String editDosageForm(Model model, @RequestParam(name="id")Long id) {
+    @GetMapping(value = "/edit_dosageForm")
+    public String editDosageForm(Model model, @RequestParam(name = "id") Long id) {
         DosageForm dosageForm = dosageFormService.findById(id);
-        model.addAttribute("dosageForm",dosageForm);
+        model.addAttribute("dosageForm", dosageForm);
         return "edit_dosageForm";
     }
 
-    @PutMapping(value="/update_form")
+    @PutMapping(value = "/update_form")
     public String updateDosageForm(DosageForm dosageForm, Model model) {
         DosageForm dosageFormDb = dosageFormService.findById(dosageForm.getId());
         dosageFormDb.setForm(dosageForm.getForm());
@@ -57,4 +57,5 @@ public class DosageFormController {
         model.addAttribute("formdosageForms", dosageFormService.findAll());
         return "redirect:/list_dosageForms";
     }
+
 }

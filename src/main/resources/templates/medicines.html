@@ -68,14 +68,24 @@
 			</aside>
 			<main class="col overflow-auto h-100">
 				<div class="bg-light border rounded-3 p-3">
-					<h4>More content...</h4>
-					<p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free
-						Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of
-						them, vegan farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes
-						Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy
-						leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies,
-						forage fingerstache food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party
-						Portland.</p>
+					<form class="formAdd" method="post" th:action="@{/searchFilter}" th:object="${searchFilter}">
+						<div class="mb-3">
+							<label for="nameFilter" class="form-label">Наименование</label>
+							<input type="text" class="form-control" id="nameFilter"
+								   th:field="*{name}">
+						</div>
+						<label for="categoryFilter" class="form-label">Категория</label>
+						<select name="category" id="categoryFilter">
+							<option value="" selected="selected">
+								Все
+							</option>
+							<option th:each="category: ${categoryList}"
+									th:value="${category.id}" th:field="*{category}"
+									th:selected="${searchFilter.category ne null and  category.id eq searchFilter.category.id}"
+									th:text="${category.name}"></option>
+						</select>
+						<button type="submit" class="btn btn-primary">Поиск</button>
+					</form>
 					<hr />
 					<div class="col py-3 container mt-5">
 						<h3>Справочник препаратов</h3>
@@ -136,6 +146,7 @@
 										<div class="col-3">
 											<a th:href="@{/delete_medicine(id=${medicine.id})}">
 												<i class="fa fa-trash-o" style="color: black"
+												   onclick="return confirm('Вы уверены, что хотите удалить данный препарат?')"
 												   aria-hidden="true" title="Удалить"></i>
 											</a>
 										</div>

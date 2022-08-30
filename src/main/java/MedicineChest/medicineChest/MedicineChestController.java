@@ -11,7 +11,6 @@ import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpServletResponse;
 
-
 @Controller
 public class MedicineChestController {
 
@@ -21,7 +20,9 @@ public class MedicineChestController {
     @Autowired
     private MedicineChestMedicineService medicineChestMedicineService;
 
-    private final Logger logger = LoggerFactory.getLogger(MedicineChestController.class);;
+    private final Logger logger = LoggerFactory.getLogger(MedicineChestController.class);
+
+    ;
 
     @GetMapping(value = "/medicineChests")
     public String listMedicineChest(Model model) {
@@ -53,22 +54,6 @@ public class MedicineChestController {
     public String deleteMedicineChest(@RequestParam(name = "id") Long id) {
         medicineChestService.deleteById(id);
         return "redirect:/medicineChests";
-    }
-
-   /* @GetMapping(value = "/delete_medicinesFromChest")
-    public String deleteMedicineFromChest(@RequestParam(name = "medicineId", required = false) Long medicineId,
-            @RequestParam(name = "chestId", required = false) Long chestId) {
-        MedicineChest medicineChest = medicineChestService.getMedicineChest(chestId);
-        medicineChest.getMedicine().removeIf(medicine -> medicine.getId().equals(medicineId));
-        medicineChestService.save(medicineChest);
-        return "redirect:/edit_medicineChest?id=" + chestId;
-    }*/
-
-    @GetMapping(value = "/edit_medicineChest")
-    public String editMedicineChest(Model model, @RequestParam(name = "id") Long id) {
-        MedicineChest medicineChest = medicineChestService.findById(id);
-        model.addAttribute("medicines", medicineChest);
-        return "edit_medicineChest";
     }
 
     @GetMapping(value = "/update_medicineChest")

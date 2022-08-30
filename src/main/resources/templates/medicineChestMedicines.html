@@ -152,7 +152,7 @@
 										<div class="col-3">
 											<a th:href="@{/delete_medicineChestMedicine(id=${medicineChestMedicine.id},chestId=${medicineChestMedicine.medicineChest.id})}"><i
 												class="fa fa-trash-o" aria-hidden="true" style="color: black"
-												title="Удалить"></i></a>
+												onclick="return confirm('Вы уверены, что хотите удалить данный препарат из аптечки?')" title="Удалить"></i></a>
 										</div>
 									</div>
 								</td>
