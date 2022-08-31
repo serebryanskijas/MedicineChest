@@ -5,7 +5,8 @@
 	<meta name="viewport"
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Справочник препаратов</title>
+	<title>Справочник лекарств</title>
+	<link rel="shortcut icon" href="/img/firstAidKit.png" type="image/x-icon">
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 		  integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
@@ -73,12 +74,12 @@
 						<div class="row">
 							<div class="col-9">
 								<label for="nameFilter" class="form-label">Наименование</label>
-								<input type="text" class="form-control" style="height: 26px" id="nameFilter"
+								<input type="text" class="form-control" id="nameFilter"
 									   th:field="*{name}">
 							</div>
-							<div class="col-3 mb-3">
+							<div class="col-3">
 								<label for="categoryFilter" class="form-label">Категория</label>
-								<select name="category" id="categoryFilter" style="width: 350px">
+								<select class="form-select" name="category" id="categoryFilter" style="width: 350px">
 									<option value="" selected="selected">
 										Все
 									</option>
@@ -88,7 +89,7 @@
 											th:text="${category.name}"></option>
 								</select>
 							</div>
-							<div class="py-3">
+							<div class="col-3 my-3">
 								<button type="submit" class="btn btn-primary">Поиск</button>
 							</div>
 						</div>
