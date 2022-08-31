@@ -46,7 +46,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="expirationDate" class="form-label">Срок годности</label>
-					<input type="date" th:value="*{expirationDate}" class="form-control" id="expirationDate"
+					<input type="date" th:attr="min=*{nowDate}" th:value="*{expirationDate}" class="form-control" id="expirationDate"
 						   th:field="*{expirationDate}" REQUIRED>
 				</div>
 				<div class="mb-3">

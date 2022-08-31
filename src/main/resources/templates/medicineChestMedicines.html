@@ -125,7 +125,7 @@
 									<label th:if="${medicineChestMedicine.medicine.dosageForm!=null}"
 										   th:utext="${medicineChestMedicine.medicine.dosageForm.form}"></label>
 								</td>
-								<td class="textData" th:utext="${medicineChestMedicine.expirationDate}"
+								<td class="textData" th:utext="${medicineChestMedicine.date}"
 									th:style="${medicineChestMedicine.isDateValid()}? 'color: green' : 'color: red'">
 								</td>
 								<td th:utext="${medicineChestMedicine.count}"></td>

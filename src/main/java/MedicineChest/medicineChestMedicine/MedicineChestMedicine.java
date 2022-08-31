@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @Entity
@@ -26,6 +27,19 @@ public class MedicineChestMedicine {
     @Column(name = "expiration_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate expirationDate;
+
+    public String getDate() {
+        return expirationDate.format(DateTimeFormatter.ofPattern("dd MMMM yyyy"));
+    }
+    @Transient
+    private String date;
+
+    public LocalDate getNowDate() {
+        return LocalDate.now() ;
+    }
+
+    @Transient
+    private LocalDate nowDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private MedicineChest medicineChest;
