@@ -68,27 +68,35 @@
 			</aside>
 			<main class="col overflow-auto h-100">
 				<div class="bg-light border rounded-3 p-3">
-					<form class="formAdd" method="post" th:action="@{/searchFilter}" th:object="${searchFilter}">
-						<div class="mb-3">
-							<label for="nameFilter" class="form-label">Наименование</label>
-							<input type="text" class="form-control" id="nameFilter"
-								   th:field="*{name}">
+					<h5>Поиск</h5>
+					<form class="formAdd mx-3" method="post" th:action="@{/searchFilter}" th:object="${searchFilter}">
+						<div class="row">
+							<div class="col-9">
+								<label for="nameFilter" class="form-label">Наименование</label>
+								<input type="text" class="form-control" style="height: 26px" id="nameFilter"
+									   th:field="*{name}">
+							</div>
+							<div class="col-3 mb-3">
+								<label for="categoryFilter" class="form-label">Категория</label>
+								<select name="category" id="categoryFilter" style="width: 350px">
+									<option value="" selected="selected">
+										Все
+									</option>
+									<option th:each="category: ${categoryList}"
+											th:value="${category.id}" th:field="*{category}"
+											th:selected="${searchFilter.category ne null and  category.id eq searchFilter.category.id}"
+											th:text="${category.name}"></option>
+								</select>
+							</div>
+							<div class="py-3">
+								<button type="submit" class="btn btn-primary">Поиск</button>
+							</div>
 						</div>
-						<label for="categoryFilter" class="form-label">Категория</label>
-						<select name="category" id="categoryFilter">
-							<option value="" selected="selected">
-								Все
-							</option>
-							<option th:each="category: ${categoryList}"
-									th:value="${category.id}" th:field="*{category}"
-									th:selected="${searchFilter.category ne null and  category.id eq searchFilter.category.id}"
-									th:text="${category.name}"></option>
-						</select>
-						<button type="submit" class="btn btn-primary">Поиск</button>
 					</form>
 					<hr />
-					<div class="col py-3 container mt-5">
-						<h3>Справочник препаратов</h3>
+					<div class="col container m-5">
+						<h4>Справочник лекарств</h4>
+						<hr style="width: 20%" />
 						<table class="table table-hover w-auto border-dark">
 							<tr>
 								<th>Наименование</th>
@@ -97,7 +105,7 @@
 								<th>Категория</th>
 								<th>Форма</th>
 								<th>
-									<a th:href="@{/add_medicine(id=${medicines})}">
+									<a th:href="@{/add_medicine}">
 										<i class="fa fa-plus" style="font-size: 1.1em"
 										   aria-hidden="true" title="Добавить препарат"></i>
 									</a>
@@ -117,7 +125,7 @@
 									<div th:id="'infPopup'+${medicine.id}" class="infPopup">
 										<div class="infPopup__body">
 											<div class="infPopup__content">
-												<a href="#" class="infPopup_close">
+												<a href="#" class="infPopup__close">
 													<i class="fa fa-times" style="color: black" aria-hidden="true"
 													   title="Закрыть"></i></a>
 												<div class="infPopup__title"

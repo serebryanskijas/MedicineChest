@@ -69,12 +69,12 @@
 				</div>
 			</aside>
 			<main class="col overflow-auto h-100">
-				<div class="bg-light border rounded-3 p-3">
-					<h4>More content...</h4>
+				<div class="bg-light border rounded-3 p-5">
+					<h5>Поиск</h5>
 					<form th:action="@{/medicineChestMedicines}">
 						<input name="id" type="hidden" th:value="${medicineChests.id}">
-						<input name="name" type="text" style="height: 25px" th:value="${medicineList}">
-						<select name="category" th:with="saveSelectState=${saveSelectState}">
+						Выберите категорию
+						<select class="mx-3" name="category" th:with="saveSelectState=${saveSelectState}">
 							<option value="-1" selected="selected">
 								Все
 							</option>
@@ -83,11 +83,13 @@
 									th:selected="${#strings.equals(category.id, __${saveSelectState}__)}"
 									th:text="${category.name}"></option>
 						</select>
-						<input type="submit" value="Найти"><br><br><br>
+						<button type="submit" class="btn btn-primary">Поиск</button>
+						<br><br><br>
 					</form>
 					<hr />
 					<div class="col container m-5">
-						<h3 th:utext="${medicineChests.name}"></h3>
+						<h4 th:utext="${medicineChests.name}"></h4>
+						<hr style="width: 30%" />
 						<table class="table table-hover w-auto border-dark">
 							<tr>
 								<th>Наименование</th>
@@ -152,7 +154,8 @@
 										<div class="col-3">
 											<a th:href="@{/delete_medicineChestMedicine(id=${medicineChestMedicine.id},chestId=${medicineChestMedicine.medicineChest.id})}"><i
 												class="fa fa-trash-o" aria-hidden="true" style="color: black"
-												onclick="return confirm('Вы уверены, что хотите удалить данный препарат из аптечки?')" title="Удалить"></i></a>
+												onclick="return confirm('Вы уверены, что хотите удалить данный препарат из аптечки?')"
+												title="Удалить"></i></a>
 										</div>
 									</div>
 								</td>

@@ -54,6 +54,7 @@ public class MedicineChestMedicineController {
     @GetMapping(value = "/add_medicineChestMedicine")
     public String addMedicineChestMedicine(Model model, @RequestParam Long id) {
         MedicineChestMedicine medicineChestMedicine = new MedicineChestMedicine();
+        medicineChestMedicine.setCount(1);
         MedicineChest medicineChest = medicineChestService.findById(id);
         medicineChestMedicine.setMedicineChest(medicineChest);
         model.addAttribute("medicineChestMedicine", medicineChestMedicine);

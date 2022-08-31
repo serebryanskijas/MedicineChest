@@ -34,7 +34,7 @@
 					</select>
 				</div>
 				<div class="mb-3">
-					<label for="name" class="form-label">Наименоввание</label>
+					<label for="name" class="form-label">Наименование</label>
 					<select class="form-select" th:field="${medicineChestMedicine.medicine.id}" aria-label="DosageForm"
 							id="name" name="name" required>
 						<option value="" selected="selected"></option>
@@ -50,7 +50,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="count" class="form-label">Количество</label>
-					<input type="number" class="form-control" placeholder="1" id="count" th:field="*{count}"
+					<input type="number" class="form-control" id="count" th:field="*{count}"
 						   min="1" max="999" required>
 				</div>
 				<button type="submit" class="btn btn-primary">Сохранить</button>
