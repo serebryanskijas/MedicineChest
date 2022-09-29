@@ -9,9 +9,10 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
@@ -21,7 +22,7 @@ public class MedicineService {
     private MedicineRepository medicineRepository;
 
     @Autowired
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     public List<Medicine> findAll() {
         return medicineRepository.findAll();
@@ -32,7 +33,8 @@ public class MedicineService {
     }
 
     public Medicine findById(Long id) {
-        return medicineRepository.findById(id).get();
+        return medicineRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Cannot find Medicine by id: " + id));
     }
 
     public void deleteById(Long id) {
@@ -44,7 +46,7 @@ public class MedicineService {
     }
 
     @SuppressWarnings("unchecked")
-    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     public List<Medicine> findByCategory(SearchVo searchVo) {
         Session session = sessionFactory.openSession();
         Criteria criteria = session.createCriteria(Medicine.class);
@@ -58,7 +60,7 @@ public class MedicineService {
         return criteria.list();
     }
 
-    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
     public List<Medicine> findByCategoryId(Long id) {
         Session session = sessionFactory.openSession();

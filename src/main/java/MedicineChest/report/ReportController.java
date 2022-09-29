@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,12 +21,12 @@ import java.util.List;
 public class ReportController {
 
     @Autowired
-    MedicineChestMedicineService medicineChestMedicineService;
+    private MedicineChestMedicineService medicineChestMedicineService;
 
     @Autowired
-    ReportService reportService;
+    private ReportService reportService;
 
-    @RequestMapping(value = "/report", params = {})
+    @RequestMapping(value = "/report")
     public void generateReport(HttpServletResponse response, @RequestParam Long id) throws IOException, JRException {
         List<MedicineChestMedicine> medicineChestMedicines = medicineChestMedicineService.findByMedicineChestId(id);
 

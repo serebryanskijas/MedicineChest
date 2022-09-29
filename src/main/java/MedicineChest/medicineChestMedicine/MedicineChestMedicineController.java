@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class MedicineChestMedicineController {
@@ -37,8 +41,9 @@ public class MedicineChestMedicineController {
     private DosageFormService dosageFormService;
 
     @GetMapping(value = "/medicineChestMedicines")
-    public String listMedicineChestMedicine(Model model, @RequestParam Long id,
-            @RequestParam(name = "category", required = false) Long category) {
+    public String listMedicineChestMedicine(Model model,
+                                            @RequestParam Long id,
+                                            @RequestParam(name = "category", required = false) Long category) {
         if (category == null || category == -1L) {
             model.addAttribute("medicineChestMedicines", medicineChestMedicineService.findByMedicineChestId(id));
         } else {
