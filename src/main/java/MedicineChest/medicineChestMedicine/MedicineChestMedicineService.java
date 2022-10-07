@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class MedicineChestMedicineService {
@@ -15,12 +16,12 @@ public class MedicineChestMedicineService {
     @Autowired
     private MedicineChestMedicineRepository medicineChestMedicineRepository;
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     public List<MedicineChestMedicine> findAll() {
         return medicineChestMedicineRepository.findAll();
     }
-
-    @Autowired
-    SessionFactory sessionFactory;
 
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
@@ -39,7 +40,8 @@ public class MedicineChestMedicineService {
     }
 
     public MedicineChestMedicine findById(Long id) {
-        return medicineChestMedicineRepository.findById(id).get();
+        return medicineChestMedicineRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Cannot find MedicineChestMedicine by id: " + id));
     }
 
     public List<MedicineChestMedicine> findByMedicineChestId(Long id) {
