@@ -105,6 +105,7 @@
 										<div class="col-3">
 											<a th:href="@{/delete_medicineChest(id=${medicineChest.id})}">
 												<i class="fa fa-trash-o" aria-hidden="true" title="Удалить"
+												   onclick="return confirm('Вы уверены, что хотите удалить аптечку?')"
 												   style="color: black"></i>
 											</a>
 										</div>
